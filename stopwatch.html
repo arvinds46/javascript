@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS-20 Stopwatch</title>
+  <script type="text/javascript">
+    let timer = false;
+    let hour = 0;
+    let minute = 0;
+    let second = 0;
+    let count = 0;
+  </script>
+</head>
+
+<body>
+
+  <div id="loading">STOPWATCH IS LOADING...</div>
+  <form method="post" id="stopwatch" style="display:none;">
+    <input type="text" name="counter" id="counter" disabled><br><br>
+    <button type="button" onclick="timer = true; stopWatch(); return false;">START</button>
+    <button type="button" onclick="timer = false; return false;">STOP</button>
+    <button type="button" onclick="timer = false; hour = 0;	minute = 0;	second = 0;	count = 0;	document.getElementById('counter').value = '00:00:00:00'; return false;">RESET</button>
+  </form>
+  <script src="script1.js"></script>
+</body>
+
+</html>
