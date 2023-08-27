@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue - FIFO</title>
+</head>
+<body>
+    <script src="queue.js"></script>
+    <script>
+        let songs = new Queue();
+        songs.enqueue("Song1");
+        songs.enqueue("Song2");
+        songs.enqueue("Song3");
+        songs.enqueue("Song4");
+        songs.enqueue("Song5");
+
+        console.log(songs.peek() + " is playing");
+
+        console.log("Length " + songs.getLength());
+
+        console.log(songs.dequeue() + " Finished");
+        console.log(songs.peek() + " is playing");
+        console.log(songs.dequeue() + " Finished");
+        console.log(songs.peek() + " is playing");
+        console.log(songs.dequeue() + " Finished");
+        console.log(songs.peek() + " is playing");
+    </script>
+</body>
+</html>

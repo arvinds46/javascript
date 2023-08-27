@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO LIST</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body class="m-3">
+    <h1>TO DO LIST</h1>
+    <input type="text" class="form-control" id="todo" placeholder="Enter your Task"><br>
+    <button type="button" class="btn btn-success" onclick="addTodo()">Submit</button>
+    <ul class="list-group my-3" id="list"></ul>
+    <script src="todo.js"></script>
+    <script>
+        let todos= new LinkedList();
+        function addTodo(){
+            let todo= document.getElementById('todo');
+            todos.add(todo.value);
+            todo.value='';
+            displayTodos();
+        }
+        function displayTodos(){
+            const data=todos.displayList();
+            let resp="";
+            for(let todo of data){
+                resp+= `<li class="list-group-item">${todo} <button type="button" class="btn btn-danger btn-sm" onclick='removeTodo("${todo}")'>X</button></li>`
+            }
+            document.getElementById('list').innerHTML=resp;
+        }
+        function removeTodo(todo){
+            todos.removeElement(todo);
+            displayTodos();
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack - LIFO</title>
+</head>
+<body>
+    <script src="stack.js"></script>
+    <script>
+        //use the Stack
+        let books = new Stack();
+        books.push("Comedy");
+        books.push("Comics");
+        books.push("History");
+        books.push("Chemistry");
+        //Check the Stack
+        books.display();
+        //Check the Stack Length
+        books.length();
+        console.log("Stack Empty? " + books.isEmpty());
+        //Remove Elements from Stack
+        console.log(books.pop());
+        console.log(books.pop());
+        //Check the Stack Length
+        books.length();
+        
+        console.log(books.pop());
+        console.log(books.pop());
+        //Check the Stack Length
+        books.length();
+        
+        console.log("Stack Empty? " + books.isEmpty());
+
+        console.log(books.pop());
+
+        console.log("Stack Empty? " + books.isEmpty());
+    </script>
+</body>
+</html>
