@@ -12,7 +12,7 @@ class LinkedList{
 
     //add new Node
     add(ele){
-        let newNode= new Node(ele);
+        let newNode= new Node(ele); //Object Initialization
         let temp;
         if(this.head==null){
             this.head=newNode;

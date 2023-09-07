@@ -1,0 +1,31 @@
+//Graphs
+class Graph {
+    constructor(noOfVertices) {
+      this.noOfVertices = noOfVertices;
+      this.adjList = new Map();
+    }
+  
+    addVertex(v) {
+      this.adjList.set(v,[]);
+    }
+    addEdge(v,w) {
+      this.adjList.get(v).push(w);
+      //unidirectional graph mean point both sides
+      this.adjList.get(w).push(v);
+    }
+  
+    printGraph() {
+      //get all vertices
+      var getKeys = this.adjList.keys();
+      let result = '';
+      for (let i of getKeys) {
+        let values = this.adjList.get(i);
+        var conc = "";
+        for (let j of values) {
+          conc += j+" ";
+        }
+        result += i+"  --->  "+conc + "<br>";
+      }
+      return result;
+    }
+  }
