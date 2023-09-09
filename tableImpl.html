@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Table</title>
+</head>
+<body>
+    <script src="hashtable.js"></script>
+    <script>
+        let hashtable = new HashTable();
+        const res1 =  hashtable.insertData(1,"sonam");
+        const res2 =  hashtable.insertData(2,"pooja");
+        const res3 =  hashtable.insertData(3,"Arvind");
+
+        console.log(hashtable.table);
+
+        console.log(hashtable.getData(3));
+    </script>
+</body>
+</html>

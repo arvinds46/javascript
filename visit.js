@@ -30,6 +30,7 @@ goBackBtn.addEventListener('click', function() {
     var value = visits.pop();
     if (typeof value == 'undefined') {
         document.getElementById('url').value = '';
+        alert("Stack Underflow!");
     }
     else {
         document.getElementById('url').value = value;
