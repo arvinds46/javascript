@@ -28,7 +28,6 @@ class Graph {
       }
       return result;
     }
-<<<<<<< HEAD
     search(v) {
       const arrayEntries = this.adjList.entries();
       for (const element of arrayEntries) {
@@ -38,6 +37,4 @@ class Graph {
       }
       return "Node Not Found";
     }
-=======
->>>>>>> 949139aa732e4c1c597c9fb71d2650b723cc5cac
   }
