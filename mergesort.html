@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Scores using Merge Sort</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body class="m-3">
+    <h1 class="text-bg-dark text-center p-3">Sorting Students' Exam Scores</h1>
+    <button type="button" class="btn btn-primary" onclick="generateRandom()">Generate Random Scores</button>
+    <button type="button" class="btn btn-success" onclick="mSort()">Sort Scores using Merge Sort</button>
+    <h2>Generated Scores</h2>
+    <h2 id="scores"></h2>
+    <h2>Sorted Scores</h2>
+    <h2 id="sorted"></h2>
+    <button type="button" class="btn btn-success" onclick="highest()">Highest Score</button>
+    <h2 id="highest"></h2>
+    <button type="button" class="btn btn-warning" onclick="lowest()">Lowest Score</button>
+    <h2 id="lowest"></h2>
+    <script src="todo.js"></script>
+    <script>
+        var numbers = [];
+        function generateRandom(){
+            for(var i = 0; i < 20; ++i) {
+                numbers.push(Math.floor(Math.random() * 100) + 1);
+            }
+            document.getElementById('scores').innerHTML = numbers.join(",");
+        }
+        function merge(arr, l, m, r) {
+            var n1 = m - l + 1;
+            var n2 = r - m;
+
+            var L = new Array(n1);
+            var R = new Array(n2);
+
+
+            for (var i = 0; i < n1; i++)
+                L[i] = arr[l + i];
+            for (var j = 0; j < n2; j++)
+                R[j] = arr[m + 1 + j];
+
+            var i = 0;
+            var j = 0;
+            var k = l;
+
+            while (i < n1 && j < n2) {
+                if (L[i] <= R[j]) {
+                    arr[k] = L[i];
+                    i++;
+                }
+                else {
+                    arr[k] = R[j];
+                    j++;
+                }
+                k++;
+            }
+
+            while (i < n1) {
+                arr[k] = L[i];
+                i++;
+                k++;
+            }
+
+            while (j < n2) {
+                arr[k] = R[j];
+                j++;
+                k++;
+            }
+        }
+
+        function mergeSort(arr,l, r){
+            if(l>=r){
+                return;
+            }
+            var m =l+ parseInt((r-l)/2);
+            mergeSort(arr,l,m);
+            mergeSort(arr,m+1,r);
+            merge(arr,l,m,r);
+        }
+        function mSort(){
+            mergeSort(numbers, 0, numbers.length - 1);
+            document.getElementById('sorted').innerHTML = numbers.join(",");
+        }
+        function highest(){
+            document.getElementById('highest').innerHTML = numbers.pop();
+        }
+        function lowest(){
+            document.getElementById('lowest').innerHTML = numbers[0];
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

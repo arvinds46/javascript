@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Sort Program - Mobile Numbers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body class="m-3">
+    <h1>Quick Sort Program - Mobile Numbers</h1>
+    <form class="card text-bg-primary p-3" style="max-width: 36rem;" id="quicksort">
+        <div class="row mb-3 align-items-center">
+            <div class="col-auto">
+                <label for="insert" class="form-label">Enter a mobile number:</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" class="form-control" id="mobile" maxlength="10" pattern="[0-9]">
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-info" onclick="addMobile()">Add Number</button>
+            </div>
+        </div>
+    </form>
+    <button type="button" class="btn btn-success my-3" onclick="sortList()">Sort List</button>
+    <form class="card text-bg-secondary p-3" style="max-width: 36rem;" id="binarysearch">
+        <div class="row mb-3 align-items-center">
+            <div class="col-auto">
+                <label for="insert" class="form-label">Search a mobile number:</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" class="form-control" id="smobile" maxlength="10" pattern="[0-9]">
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-info" onclick="searchMobile()">Search</button>
+            </div>
+        </div>
+    </form>
+    <h2 class="text-primary">Mobile Number List:</h2>
+    <ul class="my-3" id="mobilelist"></ul>
+    <h2 class="text-primary">Sorted List:</h2>
+    <ul class="my-3" id="sortlist"></ul>
+    <h2 class="text-primary">Search Result:</h2>
+    <p id="result"></p>
+    <script src="todo.js"></script>
+    <script>
+        let mobilenos= new LinkedList();
+        function addMobile(){
+            let mobile = document.getElementById('mobile');
+            mobilenos.add(mobile.value);
+            document.getElementById('quicksort').reset();
+            displayTodos();
+        }
+        function displayTodos(){
+            const data = mobilenos.displayList();
+            let resp="";
+            for(let mobile of data) {
+                resp+= `<li>${mobile}</li>`;
+            }
+            document.getElementById('mobilelist').innerHTML = resp;
+        }
+        function quicksort(arr) {
+            if (arr.length <= 1) {
+                return arr;
+            }
+            const pivot = arr.pop();
+            const left = [];
+            const right = [];
+            for (const element of arr) {
+                if (element < pivot) {
+                    left.push(element);
+                } else {
+                    right.push(element);
+                }
+            }
+            return [...quicksort(left), pivot, ...quicksort(right)];
+        }
+        let sortedArray;
+        function sortList(){
+            const unsortedArray = mobilenos.displayList();
+            sortedArray = quicksort(unsortedArray);
+            let resp="";
+            for(let mobile of sortedArray) {
+                resp+= `<li>${mobile}</li>`;
+            }
+            document.getElementById('sortlist').innerHTML = resp;
+        }
+        function binarySearch(array, left, right, key){
+            while(left <= right){
+                let med = Math.floor((left+right)/2);
+                if (array[med] == key){
+                    return med;
+                } else if (key > array[med]){
+                    left = med + 1;
+                }
+                else{
+                    right = med - 1;
+                }
+            }
+            if (left > right){
+                return false;
+            }
+        }
+       function searchMobile(){
+            let search = document.getElementById('smobile');
+            let result = 'Mobile number not found.';
+            let b = binarySearch(sortedArray,0,sortedArray.length-2,search.value);
+            if (b)
+                result = 'Mobile number found at Index ' + b;
+            document.getElementById('result').innerHTML = result;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
